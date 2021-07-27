@@ -33,3 +33,4 @@ jobs:
           commit-message: Running npm build
           branch: release
           title: '[RELEASE] Updating the build files'
+
