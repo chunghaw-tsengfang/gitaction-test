@@ -21,13 +21,13 @@ jobs:
       - name: Run build
         run: npm run build
       - run: echo "🍏 Build has finished"
-      - name: Create Pull Request to release
-        uses: peter-evans/create-pull-request@v3
-        with:
-          commit-message: Running build
-          branch: release
-          title: '[BUILD] Update build'
-          body: |
-            Update build
-            - Updated with latest build files
+      # - name: Create Pull Request to release
+      #   uses: peter-evans/create-pull-request@v3
+      #   with:
+      #     commit-message: Running build
+      #     branch: release
+      #     title: '[BUILD] Update build'
+      #     body: |
+      #       Update build
+      #       - Updated with latest build files
           
