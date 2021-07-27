@@ -1,0 +1,24 @@
+{
+  "name": "gitaction-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chunghaw-wevnal/gitaction-test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chunghaw-wevnal/gitaction-test/issues"
+  },
+  "homepage": "https://github.com/chunghaw-wevnal/gitaction-test#readme",
+  "devDependencies": {
+    "@types/node": "^12.20.17",
+    "typescript": "^4.3.5"
+  }
+}
