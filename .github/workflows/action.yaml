@@ -30,7 +30,8 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Running build
-          branch: release
+          base: release
+          branch: master          
           title: '[BUILD] Update build'
           body: |
             Update build
