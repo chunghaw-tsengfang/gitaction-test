@@ -1,5 +1,5 @@
 function hello(name: string): string {
-    return `Hello, ${name}!`;
+    return `Branch, ${name}!`;
   }
   
-  console.log(hello("World"));
+  console.log(hello("Release"));
