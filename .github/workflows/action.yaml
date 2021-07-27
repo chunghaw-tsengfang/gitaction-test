@@ -4,11 +4,11 @@ on:
     branches:
       - master
 jobs:
-  Explore-GitHub-Actions:
+  Run-Build-on-PR:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x, 15.x]
+        node-version: [16.x]
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - uses: actions/checkout@v2
@@ -22,14 +22,14 @@ jobs:
         run: npm install
       - name: Run build
         run: npm run build
-      # - run: echo "🍏 Build has finished"
-      # - name: Create Pull Request to release
-      #   uses: peter-evans/create-pull-request@v3
-      #   with:
-      #     commit-message: Running build
-      #     branch: release
-      #     title: '[BUILD] Update build'
-      #     body: |
-      #       Update build
-      #       - Updated with latest build files
+      - run: echo "🍏 Build has finished"
+      - name: Create Pull Request to release
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: Running build
+          branch: release
+          title: '[BUILD] Update build'
+          body: |
+            Update build
+            - Updated with latest build files
           
