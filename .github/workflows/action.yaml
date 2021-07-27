@@ -1,6 +1,7 @@
 name: npm build before pull request
 on: 
   pull_request:
+    types: [closed]
     branches:
       - master
 jobs:
