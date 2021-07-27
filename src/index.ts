@@ -2,4 +2,4 @@ function hello(name: string): string {
     return `This is test branch , ${name}!`;
   }
   
-  console.log(hello("999"));
+  console.log(hello("1000"));
