@@ -29,10 +29,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: Running build
+          commit-message: Running npm build
           base: release
           branch: master
-          title: '[BUILD] Update build'
-          body: |
-            Update build
-            - Updated with latest build files
+          title: '[BUILD] Updating the build files'
