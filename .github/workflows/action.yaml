@@ -11,10 +11,10 @@ jobs:
         node-version: [10.x, 12.x, 14.x, 15.x]
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - name: Using Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+      - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
       - run: echo "🖥️ The workflow is now will now build on the runner."
@@ -22,7 +22,7 @@ jobs:
         run: npm run build
       - run: echo "🍏 Build has finished"
       - name: Create Pull Request to release
-        uses: peter-evans/create-pull-request@v3
+      - uses: peter-evans/create-pull-request@v3
         with:
           commit-message: Running build
           branch: release
