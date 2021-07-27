@@ -3,4 +3,4 @@ function hello(name: string): string {
   }
 
   console.log(hello("working test 10"));
-
+  console.log("Testing");
