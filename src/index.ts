@@ -1,6 +1,6 @@
 function hello(name: string): string {
-    return `This is test branch 10, ${name}!`;
+    return `This is master branch, ${name}!`;
   }
 
-  console.log(hello("working test 1"));
+  console.log(hello("working test"));
 
