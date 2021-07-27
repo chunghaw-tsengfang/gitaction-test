@@ -12,6 +12,8 @@ jobs:
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - uses: actions/checkout@v2
+        with:
+          ref: master
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - name: Using Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
@@ -26,6 +28,7 @@ jobs:
       - name: Create Pull Request to release
         uses: peter-evans/create-pull-request@v3
         with:
+          token: ${{ secrets.Wevnal_Test }}
           commit-message: Running build
           branch: release
           title: '[BUILD] Update build'
