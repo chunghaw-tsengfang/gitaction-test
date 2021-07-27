@@ -31,6 +31,5 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Running npm build
-          base: release
-          branch: master
+          branch: release
           title: '[RELEASE] Updating the build files'
