@@ -1,7 +1,6 @@
-name: Run build on release
+name: Push to Release
 on: 
-  pull_request:
-    types: [closed]
+  push:
     branches:
       - release
 jobs:
@@ -14,8 +13,14 @@ jobs:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - uses: actions/checkout@v2
         with:
-          ref: master
+          ref: release
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      # - name: Change branch to release
+      #   run : | 
+      #     git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      #     git config --local user.name "github-actions[bot]"
+      #     git checkout release 
+      #     git pull
       - name: Using Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
@@ -26,11 +31,10 @@ jobs:
       - name: Run build
         run: npm run build
       - run: echo "🍏 Build has finished"
-      - name: Git commit
+      - name: Git commit build
         run: | 
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git commit -m "[Build] Creating build files" -a
+          git add .
+          git commit -m "[Build] Creating build files"
       - name: Push Changes
         uses: ad-m/github-push-action@master
         with:
