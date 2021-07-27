@@ -33,4 +33,4 @@ jobs:
           commit-message: Running npm build
           base: release
           branch: master
-          title: '[BUILD] Updating the build files'
+          title: '[RELEASE] Updating the build files'
