@@ -1,6 +1,7 @@
 name: npm build before pull request
 on: 
   pull_request:
+    types: [closed]
     branches:
       - master
 jobs:
@@ -29,9 +30,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: Running build
+          commit-message: Running npm build
           branch: release
-          title: '[BUILD] Update build'
-          body: |
-            Update build
-            - Updated with latest build files
+          title: '[RELEASE] Updating the build files'
+
