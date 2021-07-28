@@ -10,3 +10,4 @@ function test(num: number) : number{
 }
 
 console.log(test(5));
+console.log(test(10));
