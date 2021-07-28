@@ -30,8 +30,6 @@ jobs:
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - uses: actions/checkout@v2
-        with:
-          ref: release
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - name: Using Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
@@ -40,6 +38,8 @@ jobs:
       - run: echo "🖥️ The workflow is now will now build on the runner."
       - name: Run install
         run: npm install
+        env:
+          NODE_AUTH_TOKEN:  ${{ secrets.ACTION_AUTH_TOKEN }}
       - name: Run build
         run: npm run build
       - run: echo "🍏 Build has finished"
