@@ -35,7 +35,7 @@ jobs:
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: |
-            ${{ secrets.SSH_DEPENDENCY_KEY }}
+            ${{ secrets.SSH_KEY_FOR_DEPENDENCY }}
       - name: Using Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
