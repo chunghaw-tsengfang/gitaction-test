@@ -31,6 +31,11 @@ jobs:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - uses: actions/checkout@v2
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - name: Setup SSH Keys and known_hosts
+        uses: webfactory/ssh-agent@v0.3.0
+        with:
+          ssh-private-key: |
+            ${{ secrets.SSH_DEPENDENCY_KEY }}
       - name: Using Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
