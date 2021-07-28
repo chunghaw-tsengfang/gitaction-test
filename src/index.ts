@@ -8,3 +8,6 @@ function hello(name: string): string {
 function test(num: number) : number{
   return 3 + num;
 }
+
+console.log(test(5));
+console.log(test(10));

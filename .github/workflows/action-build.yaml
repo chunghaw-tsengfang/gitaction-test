@@ -30,16 +30,23 @@ jobs:
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - uses: actions/checkout@v2
-        with:
-          ref: release
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - name: Setup SSH Keys and known_hosts
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: |
+            ${{ secrets.SSH_KEY_FOR_DEPENDENCY }}
+      - name: Edit gitignore to remove dist folder
+        run: sed -i.back 's/dist\///' .gitignore
       - name: Using Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
       - run: echo "🖥️ The workflow is now will now build on the runner."
       - name: Run install
-        run: npm install
+        run: npm install --ignore-scripts
+        env:
+          NODE_AUTH_TOKEN:  ${{ secrets.ACTION_AUTH_TOKEN }}
       - name: Run build
         run: npm run build
       - run: echo "🍏 Build has finished"
