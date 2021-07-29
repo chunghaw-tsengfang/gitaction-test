@@ -38,7 +38,7 @@ jobs:
             ${{ secrets.SSH_KEY_FOR_DEPENDENCY }}
       - name: Edit gitignore to remove dist folder
         # run: sed -i.back 's/dist\///' .gitignore
-        run: sed -i.back 's/node-modules\///' .gitignore
+        run: sed -i.back 's/node_modules\///' .gitignore
       - name: Using Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
