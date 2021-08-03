@@ -1,5 +1,14 @@
 function hello(name: string): string {
-    return `Hello, ${name}!`;
+    return `This is the hello function, ${name}!`;
   }
-  
-  console.log(hello("World"));
+
+  console.log(hello("working test 10"));
+  console.log("Testing");
+
+function test(num: number) : number{
+  return 3 + num;
+}
+
+console.log(test(5));
+console.log(test(10));
+console.log(test(15));

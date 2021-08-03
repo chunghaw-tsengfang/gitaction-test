@@ -1,0 +1,64 @@
+name: Push to Release and Build
+on:
+  pull_request:
+      types: [closed]
+      branches:
+        - master
+jobs:
+  # Runs this first -> Push the master branch to release
+  push-release:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - uses: actions/checkout@v2
+        with:
+          ref: master
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - name: Force push to release
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: release
+          force: true
+  # This only runs after the top one succeeds -> gets release and then builds to then commit and push to release
+  run-build:
+    needs: push-release
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - uses: actions/checkout@v2
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - name: Setup SSH Keys and known_hosts
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: |
+            ${{ secrets.SSH_KEY_FOR_DEPENDENCY }}
+      - name: Edit gitignore to remove dist folder
+        run: sed -i.back 's/dist\///' .gitignore
+      - name: Using Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: echo "🖥️ The workflow is now will now build on the runner."
+      - name: Run install
+        run: npm install --ignore-scripts
+        env:
+          NODE_AUTH_TOKEN:  ${{ secrets.ACTION_AUTH_TOKEN }}
+      - name: Run build
+        run: npm run build
+      - run: echo "🍏 Build has finished"
+      - name: Git commit build
+        run: | 
+          git config --local user.email "wevnal+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add .
+          git commit -m "[Build] Creating build files"
+      - name: Push Changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: release
+       
