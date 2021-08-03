@@ -4,7 +4,7 @@ on:
     types: [closed]
     branches:
       # When developing on the efoec3 you can edit the branches
-      # - master
+      - master
       - develop
 jobs:
   npm-build:
@@ -14,16 +14,16 @@ jobs:
         node-version: [14.x]
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "Debug ${{ github.ref }}"
       - uses: actions/checkout@v2
         with:
-          ref: develop
+          ref: ${{ github.ref }}
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - name: Using Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
       - run: echo "🖥️ The workflow is now will now build on the runner."
+      - run: pwd
       - name: Run install
         run: npm install
       - name: Run build
