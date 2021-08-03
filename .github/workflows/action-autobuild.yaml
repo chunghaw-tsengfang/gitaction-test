@@ -4,7 +4,7 @@ on:
     types: [closed]
     branches:
       # When developing on the efoec3 you can edit the branches
-      - master
+      # - master
       - develop
 jobs:
   npm-build:
