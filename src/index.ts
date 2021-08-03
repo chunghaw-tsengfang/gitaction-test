@@ -3,7 +3,7 @@ function hello(name: string): string {
   }
 
   console.log(hello("working test 10"));
-  console.log("Testing");
+  console.log("Testing github action");
 
 function test(num: number) : number{
   return 3 + num;
