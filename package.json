@@ -1,7 +1,7 @@
 {
   "name": "gitaction-test",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is the release branch",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/chunghaw-wevnal/gitaction-test#readme",
   "dependencies": {
-    "dependency_lib": "git@github.com:chunghaw-wevnal/dependency_repo.git#master"
+    "dependency_lib": "git+ssh://git@github.com/chunghaw-wevnal/dependency_repo.git#master"
   },
   "devDependencies": {
     "@types/node": "^12.20.17",

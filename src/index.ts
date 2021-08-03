@@ -13,3 +13,4 @@ console.log(test(5));
 console.log(test(10));
 console.log(test(15));
 console.log(test(20));
+console.log(test(25));
